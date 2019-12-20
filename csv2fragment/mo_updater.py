@@ -9,9 +9,9 @@ import csv,sys,getopt,requests
 #
 # ---start file-------
 #        Device ID,Client ID,Client Email
-#        695132,BRUN 6,BRUN6@vet.com
-#        1970611,ASSM 1,ASSM1@vet.com
-#        1970612,HAMJ 6,HAMJ6@vet.com
+#        124,CLIENT_16,hello@someserver.com
+#        126,CLIENT_X,foo@bar.com
+#        568,CLIENT_BCZ,address3@overthere.com
 # --- end file -------
 #
 # Example of call of python script:
