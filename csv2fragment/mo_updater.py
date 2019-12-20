@@ -15,7 +15,7 @@ import csv,sys,getopt,requests
 # --- end file -------
 #
 # Example of call of python script:
-#     mo_updater.py clientdetails.csv  https://toildev.test-ram.m2m.telekom.com  yvobogers@someserver.com somepassword
+#     mo_updater.py clientdetails.csv  https://sometenanturl.ram.m2m.telekom.com  yvobogers@someserver.com somepassword
 
 def postRequest(urlname,username,password,deviceid,clientid,email):
     print (f'Posting request for updating MO of [deviceid={deviceid},clientid={clientid},email={email}] on [{urlname}]...')
