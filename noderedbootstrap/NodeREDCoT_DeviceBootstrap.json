@@ -1,0 +1,121 @@
+[
+    {
+        "id": "e151d9e2.dc3588",
+        "type": "template",
+        "z": "295004fa.0bfdcc",
+        "name": "set device ID",
+        "field": "input_data",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"id\":\"<<your_device_id>>\"\n}",
+        "output": "str",
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "8ec79e5b.fea5"
+            ]
+        ]
+    },
+    {
+        "id": "8ec79e5b.fea5",
+        "type": "api-get-credentials",
+        "z": "295004fa.0bfdcc",
+        "name": "get device credentials from bootstrap server ",
+        "tenant": "",
+        "x": 510,
+        "y": 160,
+        "wires": [
+            [
+                "ad7104a3.6122e8"
+            ]
+        ]
+    },
+    {
+        "id": "ad7104a3.6122e8",
+        "type": "debug",
+        "z": "295004fa.0bfdcc",
+        "name": "bootstrap debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 810,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cf1a825e.8d4a9",
+        "type": "inject",
+        "z": "295004fa.0bfdcc",
+        "name": "START AT DEPLOY",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 60,
+        "wires": [
+            [
+                "e151d9e2.dc3588"
+            ]
+        ]
+    },
+    {
+        "id": "39ef6abb.284c36",
+        "type": "template",
+        "z": "295004fa.0bfdcc",
+        "name": "set MO",
+        "field": "managedObject",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"name\": \"<<your_device_name>>\",\n    \"type\": \"c8y_Linux\",\n    \"c8y_IsDevice\": \"\",\n    \"com_cumulocity_model_Agent\": {},\n    \"c8y_Hardware\":{\n        \"model\": \"<<your_hw_model>>\",\n        \"revision\": \"<<your_hw_revision>\",\n        \"serialNumber\": \"<<your_serial_nr>>\"\n    },\n    \"c8y_TemperatureSensor\" : {},\n    \"c8y_AccelerationSensor\": {},\n    \"c8y_HumiditySensor\": {}\n}\n",
+        "output": "str",
+        "x": 180,
+        "y": 240,
+        "wires": [
+            [
+                "46f5654f.e2019c"
+            ]
+        ]
+    },
+    {
+        "id": "46f5654f.e2019c",
+        "type": "base-reg-device",
+        "z": "295004fa.0bfdcc",
+        "name": "check & register with tenant using device credentials",
+        "deviceId": "<<your_device_id>>",
+        "deviceIdType": "c8y_Linux",
+        "managedObject": "",
+        "tenant": "",
+        "x": 520,
+        "y": 240,
+        "wires": [
+            [
+                "b0cb0f6e.491b5"
+            ]
+        ]
+    },
+    {
+        "id": "b0cb0f6e.491b5",
+        "type": "debug",
+        "z": "295004fa.0bfdcc",
+        "name": "registration debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 850,
+        "y": 240,
+        "wires": []
+    }
+]
